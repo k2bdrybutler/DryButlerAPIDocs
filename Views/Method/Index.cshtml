@@ -1,0 +1,54 @@
+﻿@model DryButlerAPIDocs.Models.Method
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div>
+    <h4>Method</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MethodName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MethodName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NullAuthorizationResult)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NullAuthorizationResult)
+        </dd>
+
+    </dl>
+    <hr />
+    <h4>Request Model</h4>
+    <p>
+        @if (Model.RequestModel != null)
+        {
+            @Html.Partial("_ModelPartial", Model.RequestModel);
+        }
+        else
+        {
+            <div>{ NULL }</div>
+        }
+    </p>
+</div>
+<p>
+    @Html.ActionLink("Back to Service Details", "Details", "Service", new { id = Model.ServiceID }, null)
+</p>

@@ -1,0 +1,61 @@
+﻿@model DryButlerAPIDocs.Models.Service
+
+@{
+    ViewBag.Title = "Service Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>@Model.Name</h4>
+        <h1>Description</h1>
+        <p>@Model.Description</p>
+        <hr />
+        <h2>Services</h2>
+
+        <table class="table">
+            <tr>
+                <th>
+                    Method Code
+                </th>
+                <th>
+                    Method Name
+                </th>
+                <th></th>
+            </tr>
+
+            @if (Model.Methods != null && Model.Methods.Count > 0)
+            {
+                foreach (var item in Model.Methods)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MethodCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MethodName)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Details", "Index", "Method", new { id = item.ID }, null)
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
