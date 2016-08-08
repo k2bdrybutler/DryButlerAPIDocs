@@ -1,0 +1,93 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<DryButlerAPIDocs.Models.Method>
+
+
+
+@{
+    ViewBag.Title = "Service Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="padding-top:15px;">
+    <h4>Model Details</h4>
+</div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <br />
+    <br />
+
+
+        <p style="padding-bottom:15px;">
+            Find by name: @Html.TextBox("SearchString")
+            <input type="submit" class="searchbutton" value="Search" />
+            <style>
+                input[type=submit] {
+                    padding: 5px 15px;
+                    background: #ccc;
+                    border: 0 none;
+                    cursor: pointer;
+                    -webkit-border-radius: 5px;
+                    border-radius: 5px;
+                    margin-left: 5px;
+                    -webkit-transition-duration: 0.4s; /* Safari */
+                    transition-duration: 0.4s;
+                }
+
+                .searchbutton:hover {
+                    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+                }
+            </style>
+        </p>
+
+        
+}
+<div class="form-horizontal">
+
+    <hr />
+
+    <table class="table">
+        <tr style="background-color:rgba(0, 0, 0, 0.69);color:rgba(255, 255, 255, 0.88);">
+            <th>
+                Method Code
+            </th>
+            <th>
+                Method Name
+            </th>
+            <th></th>
+        </tr>
+
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                <tr class="servicecolomn">
+                    <td style="vertical-align:inherit;">
+                        @Html.DisplayFor(modelItem => item.MethodCode)
+                    </td>
+                    <td style="vertical-align:inherit;">
+                        @Html.DisplayFor(modelItem => item.MethodName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Index", "Method", new { id = item.ID }, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+
+</div>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

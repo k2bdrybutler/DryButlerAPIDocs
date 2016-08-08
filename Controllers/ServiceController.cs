@@ -1,26 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using PagedList;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace DryButlerAPIDocs.Controllers
 {
     public class ServiceController : Controller
     {
-        // GET: Service
-        public ActionResult Index()
+        public ActionResult Index(string searchString, int? page)
         {
-            var dataModel = Models.Service.SelectAll();
-            return View(dataModel);
+            var dataModel = Models.Service.SelectAll(searchString);
+            return View(dataModel.ToPagedList(page ?? 1, GeneralItems.PageRowCount));
         }
 
-        // GET: Service/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int id, string searchString, int? page)
         {
             var dataModel = Models.Service.SelectByID(id);
-            if (dataModel != null) return View(dataModel);
-            else return Index();
+            var data = (dataModel != null) ? dataModel.Methods : null;
+            if (!string.IsNullOrEmpty(searchString)) data = data.Where(x => x.MethodCode.ToString() == searchString
+            || x.MethodName.ToLower().Contains(searchString.ToLower())).ToList();
+            return View(data.ToPagedList(page ?? 1, GeneralItems.PageRowCount));
         }
     }
 }

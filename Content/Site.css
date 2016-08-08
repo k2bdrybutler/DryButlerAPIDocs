@@ -22,3 +22,86 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+.titletext {
+    margin-bottom: 50px;
+    border-top: 1px solid #eeeeee;
+    width: 20%;
+}
+
+
+.requestcolomncolor:nth-child(even) {
+    background-color: #e7ffe7;
+    color: black;
+}
+
+.responsecolomncolor:nth-child(even) {
+    background-color: rgba(0, 11, 255, 0.23);
+    color: black;
+}
+
+.errorcolomncolor:nth-child(even) {
+    background-color: #FFDCE8;
+    color: black;
+}
+
+.servicecolomn:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.07);
+    color: black;
+}
+
+
+.requestmodeltext {
+    background-color: #6f8e6f;
+    color: rgba(0, 0, 0, 0.61);
+}
+
+.responsemodeltext {
+    background-color: rgba(0, 10, 255, 0.73);
+    color: rgba(0, 0, 0, 0.75);
+}
+
+.errormodeltext {
+    background-color: rgba(255, 0, 0, 0.83);
+    color: white;
+}
+
+.responsediv {
+    background-color: rgba(53, 59, 191, 0.11);
+}
+
+
+/*th {
+    background-color: #4CAF50;
+    color: white;
+}*/
+
+.requestpartial {
+    background-color: #7ec1a1;
+    color: white;
+}
+
+.responsepartial {
+    background-color: #2D2AEE;
+    color: white;
+}
+
+.responseepartial {
+    background-color: rgba(0, 93, 255, 0.69);
+    color: white;
+}
+
+.errorpartial {
+    background-color: rgba(255, 0, 0, 0.73);
+    color: white;
+}
+
+.requestdiv {
+    background-color: #f0f5f0;
+}
+
+.errordiv {
+    background-color: rgba(171, 2, 2, 0.21);
+}
+

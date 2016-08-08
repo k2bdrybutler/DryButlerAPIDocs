@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using PagedList;
 
 namespace DryButlerAPIDocs.Controllers
 {
     public class ModelController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string searchString, int? page)
         {
-            var dataModel = Models.Model.SelectAll();
-            return View(dataModel);
+
+            var dataModel = Models.Model.SelectAll(searchString);
+            return View(dataModel.ToPagedList(page ?? 1, GeneralItems.PageRowCount));
         }
 
-        public ActionResult Detail(int id)
+        public ActionResult Details(int id)
         {
             var dataModel = Models.Model.SelectByID(id);
             return View(dataModel);

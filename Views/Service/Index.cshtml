@@ -1,36 +1,42 @@
-﻿@model IEnumerable<DryButlerAPIDocs.Models.Service>
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<DryButlerAPIDocs.Models.Service>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Services</h2>
+<h2 style="font-size:22px;padding-bottom:20px;padding-top:10px;">Services</h2>
 
 <table class="table">
-    <tr>
+    <tr style="background-color:rgba(0, 0, 0, 0.69);color:rgba(255, 255, 255, 0.88);">
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Service Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            Description
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
-    {
-        <tr>
-            <td>
+    {        
+        <tr onclick="location.href = '@(Url.Action("Details", "Service", new { id = item.ID }))'" class="servicecolomn">
+            <td style="vertical-align:inherit; width:30%;">
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
+            <td style="vertical-align:inherit; width:60%;">
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.ID })
+            <td style="text-align: center; width:10%">
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-primary" })
             </td>
         </tr>
     }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

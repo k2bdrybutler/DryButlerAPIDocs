@@ -1,0 +1,94 @@
+﻿@model DryButlerAPIDocs.Models.Method
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="font-size:22px;">@Model.MethodName</h2>
+
+<div>
+    <hr />
+    <div class="row">
+        <h4>Description</h4>
+        <p>@Model.Description</p>
+    </div>
+    <hr />
+    <div class="row">
+        <h4>Null Authorization</h4>
+        <p>@((Model.NullAuthorizationResult) ? "Allow" : "Deny")</p>
+    </div>
+    <hr />
+    <p>
+        @if (Model.RequestModel != null)
+        {
+            @Html.Partial("_ModelPartial", Model.RequestModel);
+        }
+        else
+        {
+            <div>{ NULL }</div>
+        }
+    </p>
+    <hr />
+    <p>
+        @if (Model.ResponseModel != null)
+        {
+            @Html.Partial("_ResponseModePartial", Model.ResponseModel);
+        }
+        else
+        {
+            <div>{ No Response }</div>
+        }
+    </p>
+    <hr />
+    <p>
+        @if (Model.Responses != null && Model.Responses.Count > 0)
+        {
+            <div class="errordiv">
+                <table class="table">
+                    <tr class="errormodeltext">
+                        <th>Error Codes</th>
+                        <th>   </th>
+                        <th>   </th>
+                        <th>   </th>
+                    </tr>
+                    <tr class="errorpartial">
+                        <th>
+                            Response Code
+                        </th>
+                        <th>
+                            Response Text
+                        </th>
+                        <th>Display Type</th>
+                        <th>  </th>
+                    </tr>
+
+                    @foreach (var item in Model.Responses)
+                    {
+                        var response = item.Response;
+                        <tr class="errorcolomncolor">
+                            <td>
+                                @Html.DisplayFor(modelItem => response.ResponseDisplay)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => response.ResponseText)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => K2Facade.EnumComboClass.SelectByID(K2Facade.ProjectEnums.DisplayTypes, item.DisplayType, 0).DESC)
+                            </td>
+
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        }
+        else
+        {
+            <div>{ No Response Codes }</div>
+        }
+    </p>
+</div>
+<p>
+    @Html.ActionLink("Back to Service Details", "Details", "Service", new { id = Model.ServiceID }, new  { @class = "btn btn-primary" })
+</p>

@@ -1,0 +1,54 @@
+﻿@model DryButlerAPIDocs.Models.Model
+
+<div class="responsediv">
+    <table class="table">
+        <tr class="responsemodeltext">
+            <th>Response Model</th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+        <tr class="responseepartial">
+            <th>@Model.ModelName</th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+        <tr class="responseepartial">
+            <th>
+                Parameter Name
+            </th>
+            <th>
+                Parameter Type
+            </th>
+            <th>Model</th>
+            <th>Nullable</th>
+        </tr>
+
+        @foreach (var item in Model.ModelParameters)
+        {
+            <tr class="responsecolomncolor">
+                <td >
+                    @Html.DisplayFor(modelItem => item.Parameter.ParameterName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => K2Facade.EnumComboClass.SelectByID(K2Facade.ProjectEnums.PropertyTypes, item.Parameter.ParameterType, 0).DESC)
+                </td>
+                <td>
+                    @if (item.ObjectModelID.HasValue)
+                    {
+                        @Html.ActionLink(item.ObjectModelName, "Index", "Model", new { id = item.ID }, null)
+                    }
+                    else
+                    {
+                        <span>{ NULL }</span>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nullable)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

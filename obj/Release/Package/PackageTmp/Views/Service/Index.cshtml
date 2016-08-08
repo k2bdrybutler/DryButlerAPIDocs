@@ -1,0 +1,42 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<DryButlerAPIDocs.Models.Service>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="font-size:22px;padding-bottom:20px;padding-top:10px;">Services</h2>
+
+<table class="table">
+    <tr style="background-color:rgba(0, 0, 0, 0.69);color:rgba(255, 255, 255, 0.88);">
+        <th>
+            Service Name
+        </th>
+        <th>
+            Description
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="servicecolomn">
+            <td style="vertical-align:inherit;">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td style="vertical-align:inherit;">
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-primary" })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

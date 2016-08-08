@@ -49,5 +49,38 @@ namespace DryButlerAPIDocs.Models
                 return _RequestModel;
             }
         }
+
+        private Model _ResponseModel;
+
+        public Model ResponseModel
+        {
+            get
+            {
+                try
+                {
+                    if (_ResponseModel == null && ResponseModelID.HasValue)
+                        _ResponseModel = K2Facade.Facade.SelectByID<Model>(ResponseModelID.Value, 0);
+                }
+                catch (Exception ex)
+                {
+                    K2Facade.Tools.WriteLog("Method - Response", ex);
+                }
+                return _ResponseModel;
+            }
+        }
+
+        private List<MethodResponse> _Responses;
+
+        public List<MethodResponse> Responses
+        {
+            get
+            {
+                if (_Responses == null || _Responses.Count == 0)
+                {
+                    _Responses = K2Facade.Facade.Search<MethodResponse>(0, new K2Facade.SqlFilter("Service", ServiceID), new K2Facade.SqlFilter("Method", MethodCode));
+                }
+                return _Responses;
+            }
+        }
     }
 }

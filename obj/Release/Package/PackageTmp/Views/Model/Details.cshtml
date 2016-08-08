@@ -1,0 +1,137 @@
+﻿@model DryButlerAPIDocs.Models.Model
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="font-size:22px;padding-top:5px;">Model Details</h2>
+
+<hr style="padding-bottom:10px;" />
+
+
+<p>
+    @if (Model.ModelType == 10)
+    {
+        <div class="requestdiv">
+            <table class="table">
+
+                <tr class="requestmodeltext">
+                    <th>Request Model</th>
+                    <th> </th>
+                    <th> </th>
+                    <th> </th>
+                </tr>
+                <tr class="requestpartial">
+                    <th>@Model.ModelName</th>
+                    <th> </th>
+                    <th> </th>
+                    <th> </th>
+                </tr>
+                <tr class="requestpartial">
+                    <th>
+                        Parameter Name
+                    </th>
+                    <th>
+                        Parameter Type
+                    </th>
+                    <th>Model</th>
+                    <th>Nullable</th>
+                </tr>
+
+                @foreach (var item in Model.ModelParameters)
+                {
+                    <tr class="requestcolomncolor">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Parameter.ParameterName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => K2Facade.EnumComboClass.SelectByID(K2Facade.ProjectEnums.PropertyTypes, item.Parameter.ParameterType, 0).DESC)
+                        </td>
+                        <td>
+                            @if (item.ObjectModelID.HasValue)
+                    {
+                                @Html.ActionLink(item.ObjectModelName, "Index", "Model", new { id = item.ID }, null)
+                            }
+                            else
+                            {
+                                <span>{ NULL }</span>
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nullable)
+                        </td>
+                    </tr>
+                }
+            </table>
+
+        </div>
+    }
+    else if (Model.ModelType == 20)
+    {
+        <div class="responsediv">
+            <table class="table">
+                <tr class="responsemodeltext">
+                    <th>Response Model</th>
+                    <th> </th>
+                    <th> </th>
+                    <th> </th>
+                </tr>
+                <tr class="responseepartial">
+                    <th>@Model.ModelName</th>
+                    <th> </th>
+                    <th> </th>
+                    <th> </th>
+                </tr>
+                <tr class="responseepartial">
+                    <th>
+                        Parameter Name
+                    </th>
+                    <th>
+                        Parameter Type
+                    </th>
+                    <th>Model</th>
+                    <th>Nullable</th>
+                </tr>
+
+                @foreach (var item in Model.ModelParameters)
+                {
+                    <tr class="responsecolomncolor">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Parameter.ParameterName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => K2Facade.EnumComboClass.SelectByID(K2Facade.ProjectEnums.PropertyTypes, item.Parameter.ParameterType, 0).DESC)
+                        </td>
+                        <td>
+                            @if (item.ObjectModelID.HasValue)
+                    {
+                                @Html.ActionLink(item.ObjectModelName, "Index", "Model", new { id = item.ID }, null)
+                            }
+                            else
+                            {
+                                <span>{ NULL }</span>
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nullable)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    }
+    else
+    { <h4>No Response</h4> }
+</p>
+
+
+
+
+
+
+
+<p>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+</p>

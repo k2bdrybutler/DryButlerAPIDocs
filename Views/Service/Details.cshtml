@@ -1,59 +1,91 @@
-﻿@model DryButlerAPIDocs.Models.Service
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<DryButlerAPIDocs.Models.Method>
+
+
 
 @{
     ViewBag.Title = "Service Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Details</h2>
+<div style="padding-top:15px;">
+    <h4>Model Details</h4>
+</div>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    <br />
+    <br />
 
-    <div class="form-horizontal">
-        <h4>@Model.Name</h4>
-        <h1>Description</h1>
-        <p>@Model.Description</p>
-        <hr />
-        <h2>Services</h2>
 
-        <table class="table">
-            <tr>
-                <th>
-                    Method Code
-                </th>
-                <th>
-                    Method Name
-                </th>
-                <th></th>
-            </tr>
-
-            @if (Model.Methods != null && Model.Methods.Count > 0)
-            {
-                foreach (var item in Model.Methods)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MethodCode)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MethodName)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Details", "Index", "Method", new { id = item.ID }, null)
-                        </td>
-                    </tr>
-                }
+    <p style="padding-bottom:15px;">
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" class="searchbutton" value="Search" />
+        <style>
+            input[type=submit] {
+                padding: 5px 15px;
+                background: #ccc;
+                border: 0 none;
+                cursor: pointer;
+                -webkit-border-radius: 5px;
+                border-radius: 5px;
+                margin-left: 5px;
+                -webkit-transition-duration: 0.4s; /* Safari */
+                transition-duration: 0.4s;
             }
-        </table>
 
-    </div>
+            .searchbutton:hover {
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+        </style>
+    </p>
+
+
 }
+<div class="form-horizontal">
+
+    <hr />
+
+    <table class="table">
+        <tr style="background-color:rgba(0, 0, 0, 0.69);color:rgba(255, 255, 255, 0.88);">
+            <th>
+                Method Code
+            </th>
+            <th>
+                Method Name
+            </th>
+            <th></th>
+        </tr>
+
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                <tr class="servicecolomn">
+                    <td style="vertical-align:inherit; width:20%;">
+                        @item.ServiceID.ToString() . @item.MethodCode
+                    </td>
+                    <td style="vertical-align:inherit; width: 70%;">
+                        @Html.DisplayFor(modelItem => item.MethodName)
+                    </td>
+                    <td style="text-align:center; width:10%">
+                        @Html.ActionLink("Details", "Index", "Method", new { id = item.ID }, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+
+</div>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
 </div>
 
 @section Scripts {

@@ -14,11 +14,13 @@ namespace DryButlerAPIDocs.Models
 
     public partial class Service
     {
-        public static List<Service> SelectAll()
+        public static List<Service> SelectAll(string searchString)
         {
             try
             {
-                return K2Facade.Facade.SelectAll<Service>(0);
+                return (!string.IsNullOrEmpty(searchString))
+                    ? K2Facade.Facade.Search<Service>(0, new K2Facade.SqlFilter("Name", searchString, K2Facade.FilterOperators.Like))
+                    : K2Facade.Facade.SelectAll<Service>(0);
             }
             catch (Exception ex)
             {

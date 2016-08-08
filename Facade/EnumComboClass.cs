@@ -49,7 +49,19 @@ namespace K2Facade
                         donecek.Add(new EnumComboClass(3, "Datetime"));
                         donecek.Add(new EnumComboClass(4, "Boolean"));
                         donecek.Add(new EnumComboClass(5, "JSONObject"));
-                        break;                    
+                        break;
+                    case ProjectEnums.DisplayTypes:
+                        donecek.Add(new EnumComboClass(0, "None"));
+                        donecek.Add(new EnumComboClass(10, "StatusBar"));
+                        donecek.Add(new EnumComboClass(20, "Modal"));
+                        donecek.Add(new EnumComboClass(30, "Field"));
+                        break;
+                    case ProjectEnums.ModelTypes:
+                        donecek.Add(new EnumComboClass(0, "None"));
+                        donecek.Add(new EnumComboClass(10, "Request"));
+                        donecek.Add(new EnumComboClass(20, "Response"));
+                        donecek.Add(new EnumComboClass(30, "Request / Response"));
+                        break;
                 }
                 return donecek.OrderBy(x => x.DESC).ToList();
             }
@@ -74,6 +86,8 @@ namespace K2Facade
 
     public enum ProjectEnums
     {
-        PropertyTypes
+        PropertyTypes,
+        DisplayTypes,
+        ModelTypes
     }
 }

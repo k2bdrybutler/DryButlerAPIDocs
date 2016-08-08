@@ -1,11 +1,21 @@
 ﻿@model DryButlerAPIDocs.Models.Model
 
-<div>
-    <h4>@Model.ModelName</h4>
-    <hr />
-    <h3>Parameters</h3>
+<div class="requestdiv">
     <table class="table">
-        <tr>
+
+        <tr class="requestmodeltext">
+            <th>Request Model</th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+        <tr class="requestpartial">
+            <th>@Model.ModelName</th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+        <tr class="requestpartial">
             <th>
                 Parameter Name
             </th>
@@ -18,7 +28,7 @@
 
         @foreach (var item in Model.ModelParameters)
         {
-            <tr>
+            <tr class="requestcolomncolor">
                 <td>
                     @Html.DisplayFor(modelItem => item.Parameter.ParameterName)
                 </td>
@@ -28,7 +38,7 @@
                 <td>
                     @if (item.ObjectModelID.HasValue)
                     {
-                    @Html.ActionLink(item.ObjectModelName, "Index", "Model", new { id = item.ID }, null)
+                        @Html.ActionLink(item.ObjectModelName, "Index", "Model", new { id = item.ID }, null)
                     }
                     else
                     {
@@ -41,5 +51,8 @@
             </tr>
         }
 
+
+
     </table>
+
 </div>

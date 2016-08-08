@@ -8,15 +8,18 @@ namespace DryButlerAPIDocs.Models
     public partial class Model : K2Facade.EntityBase
     {
         public string ModelName { get; set; }
+        public int ModelType { get; set; }
     }
 
     public partial class Model
     {
-        public static List<Model> SelectAll()
+        public static List<Model> SelectAll(string searchString)
         {
             try
             {
-                return K2Facade.Facade.SelectAll<Model>(0);
+                return (!string.IsNullOrEmpty(searchString))
+                    ? K2Facade.Facade.Search<Model>(0, new K2Facade.SqlFilter("ModelName", searchString, K2Facade.FilterOperators.Like))
+                    : K2Facade.Facade.SelectAll<Model>(0);
             }
             catch (Exception ex)
             {
