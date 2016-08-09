@@ -19,29 +19,29 @@
     <br />
 
 
-        <p style="padding-bottom:15px;">
-            Find by name: @Html.TextBox("SearchString")
-            <input type="submit" class="searchbutton" value="Search" />
-            <style>
-                input[type=submit] {
-                    padding: 5px 15px;
-                    background: #ccc;
-                    border: 0 none;
-                    cursor: pointer;
-                    -webkit-border-radius: 5px;
-                    border-radius: 5px;
-                    margin-left: 5px;
-                    -webkit-transition-duration: 0.4s; /* Safari */
-                    transition-duration: 0.4s;
-                }
+    <p style="padding-bottom:15px;">
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" class="searchbutton" value="Search" />
+        <style>
+            input[type=submit] {
+                padding: 5px 15px;
+                background: #ccc;
+                border: 0 none;
+                cursor: pointer;
+                -webkit-border-radius: 5px;
+                border-radius: 5px;
+                margin-left: 5px;
+                -webkit-transition-duration: 0.4s; /* Safari */
+                transition-duration: 0.4s;
+            }
 
-                .searchbutton:hover {
-                    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-                }
-            </style>
-        </p>
+            .searchbutton:hover {
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+        </style>
+    </p>
 
-        
+
 }
 <div class="form-horizontal">
 
@@ -62,14 +62,14 @@
         {
             foreach (var item in Model)
             {
-                <tr class="servicecolomn">
-                    <td style="vertical-align:inherit;">
-                        @Html.DisplayFor(modelItem => item.MethodCode)
+                <tr onclick="location.href = '@(Url.Action("Index", "Method", new { id = item.ID }))'" class="servicecolomn">
+                    <td style="vertical-align:inherit; width:20%;">
+                        @item.ServiceID.ToString() . @item.MethodCode
                     </td>
-                    <td style="vertical-align:inherit;">
+                    <td style="vertical-align:inherit; width: 70%;">
                         @Html.DisplayFor(modelItem => item.MethodName)
                     </td>
-                    <td>
+                    <td style="text-align:center; width:10%">
                         @Html.ActionLink("Details", "Index", "Method", new { id = item.ID }, new { @class = "btn btn-primary" })
                     </td>
                 </tr>

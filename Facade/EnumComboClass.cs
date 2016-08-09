@@ -40,7 +40,6 @@ namespace K2Facade
             try
             {
                 List<EnumComboClass> donecek = new List<EnumComboClass>();
-                donecek.Add(new EnumComboClass(0, "Belirsiz"));
                 switch (enm)
                 {
                     case ProjectEnums.PropertyTypes:
@@ -49,6 +48,7 @@ namespace K2Facade
                         donecek.Add(new EnumComboClass(3, "Datetime"));
                         donecek.Add(new EnumComboClass(4, "Boolean"));
                         donecek.Add(new EnumComboClass(5, "JSONObject"));
+                        donecek.Add(new EnumComboClass(6, "JSONObject Array"));
                         break;
                     case ProjectEnums.DisplayTypes:
                         donecek.Add(new EnumComboClass(0, "None"));

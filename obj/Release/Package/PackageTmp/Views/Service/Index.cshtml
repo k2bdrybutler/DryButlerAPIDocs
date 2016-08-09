@@ -2,7 +2,7 @@
 @model PagedList.IPagedList<DryButlerAPIDocs.Models.Service>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Services";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -21,14 +21,14 @@
 
     @foreach (var item in Model)
     {
-        <tr class="servicecolomn">
-            <td style="vertical-align:inherit;">
+        <tr onclick="location.href = '@(Url.Action("Details", "Service", new { id = item.ID }))'" class="servicecolomn">
+            <td style="vertical-align:inherit; width:30%;">
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td style="vertical-align:inherit;">
+            <td style="vertical-align:inherit; width:60%;">
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <td>
+            <td style="text-align: center; width:10%">
                 @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-primary" })
             </td>
         </tr>

@@ -62,7 +62,7 @@
         {
             foreach (var item in Model)
             {
-                <tr class="servicecolomn">
+                <tr onclick="location.href = '@(Url.Action("Index", "Method", new { id = item.ID }))'" class="servicecolomn">
                     <td style="vertical-align:inherit; width:20%;">
                         @item.ServiceID.ToString() . @item.MethodCode
                     </td>

@@ -1,7 +1,7 @@
 ﻿@model DryButlerAPIDocs.Models.Method
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Method Detail - " + Model.MethodName;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,16 +9,16 @@
 
 <div>
     <hr />
-    <div class="row">
-        <h4>Description</h4>
-        <p>@Model.Description</p>
-    </div>
-    <hr />
-    <div class="row">
-        <h4>Null Authorization</h4>
-        <p>@((Model.NullAuthorizationResult) ? "Allow" : "Deny")</p>
-    </div>
-    <hr />
+    @*<div class="row">
+            <h4>Description</h4>
+            <p>@Model.Description</p>
+        </div>
+        <hr />
+        <div class="row">
+            <h4>Null Authorization</h4>
+            <p>@((Model.NullAuthorizationResult) ? "Allow" : "Deny")</p>
+        </div>
+        <hr />*@
     <p>
         @if (Model.RequestModel != null)
         {
@@ -47,10 +47,7 @@
             <div class="errordiv">
                 <table class="table">
                     <tr class="errormodeltext">
-                        <th>Error Codes</th>
-                        <th>   </th>
-                        <th>   </th>
-                        <th>   </th>
+                        <th colspan="3">Error Codes</th>
                     </tr>
                     <tr class="errorpartial">
                         <th>
@@ -60,13 +57,14 @@
                             Response Text
                         </th>
                         <th>Display Type</th>
-                        <th>  </th>
                     </tr>
 
-                    @foreach (var item in Model.Responses)
+                    @foreach (var item in Model.Responses.OrderBy(x => x.Level))
                     {
                         var response = item.Response;
-                        <tr class="errorcolomncolor">
+                        var cls = (response.ResponseCode == 100) ? "requestpartial" : "errorcolomncolor";
+
+                        <tr class="@cls">
                             <td>
                                 @Html.DisplayFor(modelItem => response.ResponseDisplay)
                             </td>
@@ -76,7 +74,6 @@
                             <td>
                                 @Html.DisplayFor(modelItem => K2Facade.EnumComboClass.SelectByID(K2Facade.ProjectEnums.DisplayTypes, item.DisplayType, 0).DESC)
                             </td>
-
                         </tr>
                     }
 
@@ -90,5 +87,5 @@
     </p>
 </div>
 <p>
-    @Html.ActionLink("Back to Service Details", "Details", "Service", new { id = Model.ServiceID }, new  { @class = "btn btn-primary" })
+    @Html.ActionLink("Back to Service Details", "Details", "Service", new { id = Model.ServiceID }, new { @class = "btn btn-primary" })
 </p>

@@ -7,6 +7,6 @@ namespace DryButlerAPIDocs
 {
     public class GeneralItems
     {
-        public static int PageRowCount { get { return 50; } }
+        public static int PageRowCount { get { return 100; } }
     }
 }

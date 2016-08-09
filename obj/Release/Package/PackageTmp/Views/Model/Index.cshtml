@@ -2,70 +2,61 @@
 @model PagedList.IPagedList<DryButlerAPIDocs.Models.Model>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Models";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2 style="font-size:22px;padding-top:10px;">Model List</h2>
 <hr />
 @using (Html.BeginForm())
-    {
-        <p style="padding-bottom:15px;">
-            Find by name: @Html.TextBox("SearchString")
-            <input type="submit" class="searchbutton" value="Search" />
-            <style>
-                input[type=submit] {
-                    padding: 5px 15px;
-                    background: #ccc;
-                    border: 0 none;
-                    cursor: pointer;
-                    -webkit-border-radius: 5px;
-                    border-radius: 5px;
-                    margin-left: 5px;
-                    -webkit-transition-duration: 0.4s; /* Safari */
-                    transition-duration: 0.4s;
-                }
+{
+    <p style="padding-bottom:15px;">
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" class="searchbutton" value="Search" />
+        <style>
+            input[type=submit] {
+                padding: 5px 15px;
+                background: #ccc;
+                border: 0 none;
+                cursor: pointer;
+                -webkit-border-radius: 5px;
+                border-radius: 5px;
+                margin-left: 5px;
+                -webkit-transition-duration: 0.4s; /* Safari */
+                transition-duration: 0.4s;
+            }
 
-                .searchbutton:hover {
-                    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-                }
-            </style>
-        </p>
-    }
+            .searchbutton:hover {
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+        </style>
+    </p>
+}
 <table class="table">
-    <tr style="background-color:rgba(0, 0, 0, 0.69);color:rgba(255, 255, 255, 0.88)" ;>
+    <tr style="background-color:rgba(0, 0, 0, 0.69);color:rgba(255, 255, 255, 0.88);">
         <th>
             Model Name
         </th>
         <th>Model Type</th>
         <th> </th>
     </tr>
-    @*@if (Model != null && Model.Count > 0)
-    {*@
-        @foreach (var item in Model)
-        {
-            <tr class="servicecolomn">
-                <td style="vertical-align:inherit;">
-                    @Html.DisplayFor(modelItem => item.ModelName)
-                </td>
-                <td style="vertical-align:inherit;">
-                    @Html.DisplayFor(modelItem => K2Facade.EnumComboClass.SelectByID(K2Facade.ProjectEnums.ModelTypes, item.ModelType, 0).DESC)
-                </td>
-                <td style="vertical-align:inherit;">
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-primary" })
-                </td>
-            </tr>
-        }
-    @*}
-    else
+    @foreach (var item in Model)
     {
-        <tr class="servicecolomn">
-            <td colspan="2" style="vertical-align:inherit;">No Results Found!</td>
+        <tr onclick="location.href = '@(Url.Action("Details", "Model", new { id = item.ID }))'" c class="servicecolomn">
+            <td style="vertical-align:inherit; width:60%">
+                @Html.DisplayFor(modelItem => item.ModelName)
+            </td>
+            <td style="vertical-align:inherit; width: 30%">
+                @Html.DisplayFor(modelItem => K2Facade.EnumComboClass.SelectByID(K2Facade.ProjectEnums.ModelTypes, item.ModelType, 0).DESC)
+            </td>
+            <td style="vertical-align:inherit; text-align:center; width:10%">
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-primary" })
+            </td>
         </tr>
-    }*@
+    }
 </table>
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-    @Html.PagedListPager(Model, page => Url.Action("Index",
+@Html.PagedListPager(Model, page => Url.Action("Index",
         new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

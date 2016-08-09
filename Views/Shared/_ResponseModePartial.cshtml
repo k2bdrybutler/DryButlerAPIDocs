@@ -37,7 +37,7 @@
                 <td>
                     @if (item.ObjectModelID.HasValue)
                     {
-                        @Html.ActionLink(item.ObjectModelName, "Index", "Model", new { id = item.ID }, null)
+                        @Html.ActionLink(item.ObjectModelName, "Details", "Model", new { id = item.ObjectModelID }, null)
                     }
                     else
                     {

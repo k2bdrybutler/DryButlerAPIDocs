@@ -12,6 +12,8 @@ namespace DryButlerAPIDocs.Models
         public int ObjectType { get; set; }
         public int? ObjectModelID { get; set; }
         public bool Nullable { get; set; }
+
+        public virtual bool Required { get { return Nullable == false; } }
     }
 
     public partial class ModelParameter

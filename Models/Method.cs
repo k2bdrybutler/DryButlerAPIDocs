@@ -77,7 +77,7 @@ namespace DryButlerAPIDocs.Models
             {
                 if (_Responses == null || _Responses.Count == 0)
                 {
-                    _Responses = K2Facade.Facade.Search<MethodResponse>(0, new K2Facade.SqlFilter("Service", ServiceID), new K2Facade.SqlFilter("Method", MethodCode));
+                    _Responses = K2Facade.Facade.Search<MethodResponse>(0, new K2Facade.SqlOrder("Level"), new K2Facade.SqlFilter("Service", ServiceID), new K2Facade.SqlFilter("Method", MethodCode));
                 }
                 return _Responses;
             }

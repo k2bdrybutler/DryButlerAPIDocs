@@ -1,7 +1,7 @@
 ﻿@model DryButlerAPIDocs.Models.Model
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Model Details" + Model.ModelName;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,7 +11,7 @@
 
 
 <p>
-    @if (Model.ModelType == 10)
+    @if (Model.ModelType != 20)
     {
         <div class="requestdiv">
             <table class="table">

@@ -9,5 +9,7 @@ namespace DryButlerAPIDocs.Models
     {
         public string ParameterName { get; set; }
         public int ParameterType { get; set; }
+        public string ValueRange { get; set; }
+        public string SampleValue { get; set; }
     }
 }
