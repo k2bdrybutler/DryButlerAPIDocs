@@ -15,24 +15,24 @@
             <th> </th>
         </tr>
         <tr class="responseepartial">
-            <th>
+            <th colspan="2">
                 Parameter Name
             </th>
             <th>
                 Parameter Type
             </th>
             <th>Model</th>
-            <th>Nullable</th>
+            @*<th>Nullable</th>*@
         </tr>
 
         @foreach (var item in Model.ModelParameters)
         {
             <tr class="responsecolomncolor">
-                <td>
+                <td colspan="2">
                     @Html.DisplayFor(modelItem => item.ParameterName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => K2Facade.EnumComboClass.SelectByID(K2Facade.ProjectEnums.PropertyTypes, item.ParameterType, 0).DESC)
+                    @Html.DisplayFor(modelItem => item.ParameterTypeDesc)
                 </td>
                 <td>
                     @if (!string.IsNullOrEmpty(item.ObjectModelID))
@@ -44,9 +44,9 @@
                         <span>{ NULL }</span>
                     }
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nullable)
-                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Nullable)
+                    </td>*@
             </tr>
         }
 

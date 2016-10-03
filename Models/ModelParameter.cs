@@ -28,7 +28,7 @@ namespace DryButlerAPIDocs.Models
                 try
                 {
                     if (_ObjectModel == null && !string.IsNullOrEmpty(ObjectModelID))
-                        _ObjectModel = K2Facade.Facade.GetFirst<DBAPIModel>(0, new K2Facade.SqlFilter("UniqID",ObjectModelID));
+                        _ObjectModel = K2Facade.Facade.GetFirst<DBAPIModel>(0, new K2Facade.SqlFilter("UniqID", ObjectModelID));
                 }
                 catch (Exception ex)
                 {
@@ -43,6 +43,14 @@ namespace DryButlerAPIDocs.Models
             get
             {
                 return (ObjectModel != null) ? ObjectModel.ModelName : null;
+            }
+        }
+
+        public virtual string ParameterTypeDesc
+        {
+            get
+            {
+                return ((ObjectType == 20) ? "Array of " : "") + K2Facade.EnumComboClass.SelectByID(K2Facade.ProjectEnums.PropertyTypes, ParameterType, 0).DESC;
             }
         }
     }

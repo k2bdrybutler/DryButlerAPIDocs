@@ -12,7 +12,7 @@ namespace DryButlerAPIDocs.Controllers
             return View(dataModel.ToPagedList(page ?? 1, GeneralItems.PageRowCount));
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
             var dataModel = Models.DBAPIModel.SelectByID(id);
             return View(dataModel);

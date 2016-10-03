@@ -1,4 +1,4 @@
-﻿@model DryButlerAPIDocs.Models.Method
+﻿@model DryButlerAPIDocs.Models.DBMethod
 
 @{
     ViewBag.Title = "Method Detail - " + Model.MethodName;
@@ -47,14 +47,20 @@
             <div class="errordiv">
                 <table class="table">
                     <tr class="errormodeltext">
-                        <th colspan="3">Error Codes</th>
+                        <th colspan="5">Error Codes</th>
                     </tr>
                     <tr class="errorpartial">
                         <th>
                             Response Code
                         </th>
                         <th>
+                            Level
+                        </th>
+                        <th>
                             Response Text
+                        </th>
+                        <th>
+                            Control
                         </th>
                         <th>Display Type</th>
                     </tr>
@@ -69,7 +75,13 @@
                                 @Html.DisplayFor(modelItem => response.ResponseDisplay)
                             </td>
                             <td>
+                                @Html.DisplayFor(modelItem => item.Level)
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => response.ResponseText)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Control)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => K2Facade.EnumComboClass.SelectByID(K2Facade.ProjectEnums.DisplayTypes, item.DisplayType, 0).DESC)
@@ -87,5 +99,5 @@
     </p>
 </div>
 <p>
-    @Html.ActionLink("Back to Service Details", "Details", "Service", new { id = Model.ServiceID }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Back to Service Details", "Details", "Service", new { id = Model.DBServiceID }, new { @class = "btn btn-primary" })
 </p>

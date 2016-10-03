@@ -42,7 +42,7 @@
     </tr>
     @foreach (var item in Model)
     {
-        <tr onclick="location.href = '@(Url.Action("Details", "Model", new { id = item.ID }))'" c class="servicecolomn">
+        <tr onclick="location.href = '@(Url.Action("Details", "Model", new { id = item.UniqID }))'" c class="servicecolomn">
             <td style="vertical-align:inherit; width:60%">
                 @Html.DisplayFor(modelItem => item.ModelName)
             </td>
@@ -50,7 +50,7 @@
                 @Html.DisplayFor(modelItem => K2Facade.EnumComboClass.SelectByID(K2Facade.ProjectEnums.ModelTypes, item.ModelType, 0).DESC)
             </td>
             <td style="vertical-align:inherit; text-align:center; width:10%">
-                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Details", "Details", "Model", new { id = item.UniqID }, new { @class = "btn btn-primary" })
             </td>
         </tr>
     }

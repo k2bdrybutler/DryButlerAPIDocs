@@ -11,6 +11,9 @@
 <table class="table">
     <tr style="background-color:rgba(0, 0, 0, 0.69);color:rgba(255, 255, 255, 0.88);">
         <th>
+            Service Code
+        </th>
+        <th>
             Service Name
         </th>
         <th>
@@ -22,10 +25,13 @@
     @foreach (var item in Model)
     {
         <tr onclick="location.href = '@(Url.Action("Details", "Service", new { id = item.ID }))'" class="servicecolomn">
-            <td style="vertical-align:inherit; width:30%;">
+            <td style="vertical-align:inherit; width:15%;">
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td style="vertical-align:inherit; width:25%;">
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td style="vertical-align:inherit; width:60%;">
+            <td style="vertical-align:inherit; width:50%;">
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td style="text-align: center; width:10%">

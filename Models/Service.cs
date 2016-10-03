@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace DryButlerAPIDocs.Models
 {
@@ -17,8 +14,8 @@ namespace DryButlerAPIDocs.Models
             try
             {
                 return (!string.IsNullOrEmpty(searchString))
-                    ? K2Facade.Facade.Search<DBService>(0, new K2Facade.SqlFilter("Name", searchString, K2Facade.FilterOperators.Like))
-                    : K2Facade.Facade.Search<DBService>(0, new K2Facade.SqlFilter("ShowInAPIDocs", true));
+                    ? K2Facade.Facade.Search<DBService>(0, new K2Facade.SqlOrder("ID"), new K2Facade.SqlFilter("Name", searchString, K2Facade.FilterOperators.Like))
+                    : K2Facade.Facade.Search<DBService>(0, new K2Facade.SqlOrder("ID"), new K2Facade.SqlFilter("ShowInAPIDocs", true));
             }
             catch (Exception ex)
             {
@@ -48,7 +45,8 @@ namespace DryButlerAPIDocs.Models
             {
                 try
                 {
-                    if (_Methods == null) _Methods = K2Facade.Facade.Search<DBMethod>(0, new K2Facade.SqlFilter("DBServiceID", ID), new K2Facade.SqlFilter("ShowInAPIDocs", true));
+                    if (_Methods == null) _Methods = K2Facade.Facade.Search<DBMethod>(0, new K2Facade.SqlOrder("MethodCode"), 
+                        new K2Facade.SqlFilter("DBServiceID", ID), new K2Facade.SqlFilter("ShowInAPIDocs", true));
                 }
                 catch (Exception ex)
                 {

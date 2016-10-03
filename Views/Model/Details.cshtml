@@ -46,12 +46,12 @@
                             @Html.DisplayFor(modelItem => item.ParameterName)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => K2Facade.EnumComboClass.SelectByID(K2Facade.ProjectEnums.PropertyTypes, item.ParameterType, 0).DESC)
+                            @Html.DisplayFor(modelItem => item.ParameterTypeDesc)
                         </td>
                         <td>
                             @if (!string.IsNullOrEmpty(item.ObjectModelID))
                             {
-                                @Html.ActionLink(item.ObjectModelName, "Details", "Model", new { id = item.ID }, null)
+                                @Html.ActionLink(item.ObjectModelName, "Details", "Model", new { id = item.ModelUniqID }, null)
                             }
                             else
                             {
@@ -101,12 +101,12 @@
                             @Html.DisplayFor(modelItem => item.ParameterName)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => K2Facade.EnumComboClass.SelectByID(K2Facade.ProjectEnums.PropertyTypes, item.ParameterType, 0).DESC)
+                            @Html.DisplayFor(modelItem => item.ParameterTypeDesc)
                         </td>
                         <td>
                             @if (!string.IsNullOrEmpty(item.ObjectModelID))
                             {
-                                @Html.ActionLink(item.ObjectModelName, "Details", "Model", new { id = item.ID }, null)
+                                @Html.ActionLink(item.ObjectModelName, "Details", "Model", new { id = item.ObjectModelID }, null)
                             }
                             else
                             {

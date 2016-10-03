@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace DryButlerAPIDocs.Models
 {
@@ -26,11 +24,11 @@ namespace DryButlerAPIDocs.Models
             }
         }
 
-        public static DBAPIModel SelectByID(int id)
+        public static DBAPIModel SelectByID(string id)
         {
             try
             {
-                return K2Facade.Facade.SelectByID<DBAPIModel>(id, 0);
+                return K2Facade.Facade.GetFirst<DBAPIModel>(0, new K2Facade.SqlFilter("UniqID", id));
             }
             catch (Exception ex)
             {

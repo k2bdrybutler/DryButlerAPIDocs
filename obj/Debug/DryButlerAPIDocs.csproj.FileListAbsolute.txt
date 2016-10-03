@@ -169,7 +169,6 @@ C:\Users\Bahadır\Desktop\Projects\DRYBUTLER\DryButlerAPIDocs\DryButlerAPIDocs\b
 C:\Users\Bahadır\Desktop\Projects\DRYBUTLER\DryButlerAPIDocs\DryButlerAPIDocs\obj\Debug\DryButlerAPIDocs.csprojResolveAssemblyReference.cache
 C:\Users\Bahadır\Desktop\Projects\DRYBUTLER\DryButlerAPIDocs\DryButlerAPIDocs\obj\Debug\DryButlerAPIDocs.dll
 C:\Users\Bahadır\Desktop\Projects\DRYBUTLER\DryButlerAPIDocs\DryButlerAPIDocs\obj\Debug\DryButlerAPIDocs.pdb
-C:\Projects\DryButlerAPIDocs\obj\Debug\DryButlerAPIDocs.csprojResolveAssemblyReference.cache
 C:\Projects\DryButlerAPIDocs\bin\ApplicationInsights.config
 C:\Projects\DryButlerAPIDocs\bin\roslyn\csc.exe
 C:\Projects\DryButlerAPIDocs\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
