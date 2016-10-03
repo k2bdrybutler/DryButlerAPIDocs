@@ -5,7 +5,7 @@ using System.Web;
 
 namespace DryButlerAPIDocs.Models
 {
-    public partial class Response : K2Facade.EntityBase
+    public partial class DBResponse : K2Facade.EntityBase
     {
         public int ResponseCategory { get; set; }
         public int ResponseCode { get; set; }

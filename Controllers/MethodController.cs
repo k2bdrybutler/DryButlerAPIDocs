@@ -6,7 +6,7 @@ namespace DryButlerAPIDocs.Controllers
     {
         public ActionResult Index(int id)
         {
-            var dataModel = Models.Method.SelectByID(id);
+            var dataModel = Models.DBMethod.SelectByID(id);
             return View(dataModel);
         }
     }

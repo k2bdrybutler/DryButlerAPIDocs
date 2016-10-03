@@ -5,24 +5,23 @@ using System.Web;
 
 namespace DryButlerAPIDocs.Models
 {
-    public partial class Method : K2Facade.EntityBase
+    public partial class DBMethod : K2Facade.EntityBase
     {
-        public int ServiceID { get; set; }
+        public int DBServiceID { get; set; }
         public int MethodCode { get; set; }
         public string MethodName { get; set; }
         public string Description { get; set; }
         public bool NullAuthorizationResult { get; set; }
-        public int? RequestModelID { get; set; }
-        public int? ResponseModelID { get; set; }
-    }
+        public string RequestModelID { get; set; }
+        public string ResponseModelID { get; set; }
+        public int? ResponseObjectType { get; set; }
+        public bool ShowInAPIDocs { get; set; }
 
-    public partial class Method
-    {
-        public static Method SelectByID(int id)
+        public static DBMethod SelectByID(int id)
         {
             try
             {
-                return K2Facade.Facade.SelectByID<Method>(id, 0);
+                return K2Facade.Facade.SelectByID<DBMethod>(id, 0);
             }
             catch (Exception ex)
             {
@@ -31,16 +30,16 @@ namespace DryButlerAPIDocs.Models
             }
         }
 
-        private Model _RequestModel;
+        private DBAPIModel _RequestModel;
 
-        public Model RequestModel
+        public virtual DBAPIModel RequestModel
         {
             get
             {
                 try
                 {
-                    if (_RequestModel == null && RequestModelID.HasValue)
-                        _RequestModel = K2Facade.Facade.SelectByID<Model>(RequestModelID.Value, 0);
+                    if (_RequestModel == null && !string.IsNullOrEmpty(RequestModelID))
+                        _RequestModel = K2Facade.Facade.GetFirst<DBAPIModel>(0, new K2Facade.SqlFilter("UniqID", RequestModelID));
                 }
                 catch (Exception ex)
                 {
@@ -50,16 +49,16 @@ namespace DryButlerAPIDocs.Models
             }
         }
 
-        private Model _ResponseModel;
+        private DBAPIModel _ResponseModel;
 
-        public Model ResponseModel
+        public virtual DBAPIModel ResponseModel
         {
             get
             {
                 try
                 {
-                    if (_ResponseModel == null && ResponseModelID.HasValue)
-                        _ResponseModel = K2Facade.Facade.SelectByID<Model>(ResponseModelID.Value, 0);
+                    if (_ResponseModel == null && !string.IsNullOrEmpty( ResponseModelID))
+                        _ResponseModel = K2Facade.Facade.GetFirst<DBAPIModel>(0, new K2Facade.SqlFilter("UniqID", ResponseModelID));
                 }
                 catch (Exception ex)
                 {
@@ -69,15 +68,15 @@ namespace DryButlerAPIDocs.Models
             }
         }
 
-        private List<MethodResponse> _Responses;
+        private List<DBMethodResponse> _Responses;
 
-        public List<MethodResponse> Responses
+        public virtual List<DBMethodResponse> Responses
         {
             get
             {
                 if (_Responses == null || _Responses.Count == 0)
                 {
-                    _Responses = K2Facade.Facade.Search<MethodResponse>(0, new K2Facade.SqlOrder("Level"), new K2Facade.SqlFilter("Service", ServiceID), new K2Facade.SqlFilter("Method", MethodCode));
+                    _Responses = K2Facade.Facade.Search<DBMethodResponse>(0, new K2Facade.SqlOrder("Level"), new K2Facade.SqlFilter("Service", DBServiceID), new K2Facade.SqlFilter("Method", MethodCode));
                 }
                 return _Responses;
             }

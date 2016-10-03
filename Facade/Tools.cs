@@ -259,7 +259,7 @@ namespace K2Facade
                         UseSSPI = false,
                         Server = "10.10.10.7",
                         //Server = ".",
-                        Database = "DryButlerAPI",
+                        Database = "DryButler2",
                         UserID = "sa",
                         Password = "123456"
                     };

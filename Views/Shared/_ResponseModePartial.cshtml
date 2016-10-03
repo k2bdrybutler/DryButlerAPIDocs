@@ -1,4 +1,4 @@
-﻿@model DryButlerAPIDocs.Models.Model
+﻿@model DryButlerAPIDocs.Models.DBAPIModel
 
 <div class="responsediv">
     <table class="table">
@@ -28,14 +28,14 @@
         @foreach (var item in Model.ModelParameters)
         {
             <tr class="responsecolomncolor">
-                <td >
-                    @Html.DisplayFor(modelItem => item.Parameter.ParameterName)
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParameterName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => K2Facade.EnumComboClass.SelectByID(K2Facade.ProjectEnums.PropertyTypes, item.Parameter.ParameterType, 0).DESC)
+                    @Html.DisplayFor(modelItem => K2Facade.EnumComboClass.SelectByID(K2Facade.ProjectEnums.PropertyTypes, item.ParameterType, 0).DESC)
                 </td>
                 <td>
-                    @if (item.ObjectModelID.HasValue)
+                    @if (!string.IsNullOrEmpty(item.ObjectModelID))
                     {
                         @Html.ActionLink(item.ObjectModelName, "Details", "Model", new { id = item.ObjectModelID }, null)
                     }

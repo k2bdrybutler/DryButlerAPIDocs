@@ -43,12 +43,15 @@ namespace K2Facade
                 switch (enm)
                 {
                     case ProjectEnums.PropertyTypes:
-                        donecek.Add(new EnumComboClass(1, "String"));
-                        donecek.Add(new EnumComboClass(2, "Int32"));
-                        donecek.Add(new EnumComboClass(3, "Datetime"));
-                        donecek.Add(new EnumComboClass(4, "Boolean"));
-                        donecek.Add(new EnumComboClass(5, "JSONObject"));
-                        donecek.Add(new EnumComboClass(6, "JSONObject Array"));
+                        donecek.Add(new EnumComboClass(10, "String"));
+                        donecek.Add(new EnumComboClass(20, "Integer"));
+                        donecek.Add(new EnumComboClass(30, "Double"));
+                        donecek.Add(new EnumComboClass(40, "Boolean"));
+                        donecek.Add(new EnumComboClass(50, "Date"));
+                        donecek.Add(new EnumComboClass(60, "Time"));
+                        donecek.Add(new EnumComboClass(70, "Datetime"));
+                        donecek.Add(new EnumComboClass(80, "Decimal"));
+                        donecek.Add(new EnumComboClass(100, "JSONObject"));
                         break;
                     case ProjectEnums.DisplayTypes:
                         donecek.Add(new EnumComboClass(0, "None"));

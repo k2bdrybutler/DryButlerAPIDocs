@@ -5,21 +5,19 @@ using System.Web;
 
 namespace DryButlerAPIDocs.Models
 {
-    public partial class Model : K2Facade.EntityBase
+    public partial class DBAPIModel : K2Facade.EntityBase
     {
+        public string UniqID { get; set; }
         public string ModelName { get; set; }
         public int ModelType { get; set; }
-    }
 
-    public partial class Model
-    {
-        public static List<Model> SelectAll(string searchString)
+        public static List<DBAPIModel> SelectAll(string searchString)
         {
             try
             {
                 return (!string.IsNullOrEmpty(searchString))
-                    ? K2Facade.Facade.Search<Model>(0, new K2Facade.SqlFilter("ModelName", searchString, K2Facade.FilterOperators.Like))
-                    : K2Facade.Facade.SelectAll<Model>(0);
+                    ? K2Facade.Facade.Search<DBAPIModel>(0, new K2Facade.SqlFilter("ModelName", searchString, K2Facade.FilterOperators.Like))
+                    : K2Facade.Facade.SelectAll<DBAPIModel>(0);
             }
             catch (Exception ex)
             {
@@ -28,11 +26,11 @@ namespace DryButlerAPIDocs.Models
             }
         }
 
-        public static Model SelectByID(int id)
+        public static DBAPIModel SelectByID(int id)
         {
             try
             {
-                return K2Facade.Facade.SelectByID<Model>(id, 0);
+                return K2Facade.Facade.SelectByID<DBAPIModel>(id, 0);
             }
             catch (Exception ex)
             {
@@ -41,15 +39,15 @@ namespace DryButlerAPIDocs.Models
             }
         }
 
-        private List<ModelParameter> _ModelParameters;
+        private List<DBAPIModelParameter> _ModelParameters;
 
-        public List<ModelParameter> ModelParameters
+        public virtual List<DBAPIModelParameter> ModelParameters
         {
             get
             {
                 try
                 {
-                    if (_ModelParameters == null) _ModelParameters = K2Facade.Facade.Search<ModelParameter>(0, new K2Facade.SqlFilter("ModelID", ID));
+                    if (_ModelParameters == null) _ModelParameters = K2Facade.Facade.Search<DBAPIModelParameter>(0, new K2Facade.SqlFilter("DBAPIModelID", ID));
                 }
                 catch (Exception ex)
                 {

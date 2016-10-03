@@ -6,21 +6,19 @@ using System.Web;
 
 namespace DryButlerAPIDocs.Models
 {
-    public partial class Service : K2Facade.EntityBase
+    public partial class DBService : K2Facade.EntityBase
     {
         public string Name { get; set; }
         public string Description { get; set; }
-    }
+        public bool ShowInAPIDocs { get; set; }
 
-    public partial class Service
-    {
-        public static List<Service> SelectAll(string searchString)
+        public static List<DBService> SelectAll(string searchString)
         {
             try
             {
                 return (!string.IsNullOrEmpty(searchString))
-                    ? K2Facade.Facade.Search<Service>(0, new K2Facade.SqlFilter("Name", searchString, K2Facade.FilterOperators.Like))
-                    : K2Facade.Facade.SelectAll<Service>(0);
+                    ? K2Facade.Facade.Search<DBService>(0, new K2Facade.SqlFilter("Name", searchString, K2Facade.FilterOperators.Like))
+                    : K2Facade.Facade.Search<DBService>(0, new K2Facade.SqlFilter("ShowInAPIDocs", true));
             }
             catch (Exception ex)
             {
@@ -29,11 +27,11 @@ namespace DryButlerAPIDocs.Models
             }
         }
 
-        public static Service SelectByID(int id)
+        public static DBService SelectByID(int id)
         {
             try
             {
-                return K2Facade.Facade.SelectByID<Service>(id, 0);
+                return K2Facade.Facade.SelectByID<DBService>(id, 0);
             }
             catch (Exception ex)
             {
@@ -42,15 +40,15 @@ namespace DryButlerAPIDocs.Models
             }
         }
 
-        private List<Method> _Methods;
+        private List<DBMethod> _Methods;
 
-        public List<Method> Methods
+        public virtual List<DBMethod> Methods
         {
             get
             {
                 try
                 {
-                    if (_Methods == null) _Methods = K2Facade.Facade.Search<Method>(0, new K2Facade.SqlFilter("ServiceID", ID));
+                    if (_Methods == null) _Methods = K2Facade.Facade.Search<DBMethod>(0, new K2Facade.SqlFilter("DBServiceID", ID), new K2Facade.SqlFilter("ShowInAPIDocs", true));
                 }
                 catch (Exception ex)
                 {

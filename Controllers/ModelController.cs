@@ -8,13 +8,13 @@ namespace DryButlerAPIDocs.Controllers
         public ActionResult Index(string searchString, int? page)
         {
 
-            var dataModel = Models.Model.SelectAll(searchString);
+            var dataModel = Models.DBAPIModel.SelectAll(searchString);
             return View(dataModel.ToPagedList(page ?? 1, GeneralItems.PageRowCount));
         }
 
         public ActionResult Details(int id)
         {
-            var dataModel = Models.Model.SelectByID(id);
+            var dataModel = Models.DBAPIModel.SelectByID(id);
             return View(dataModel);
         }
     }

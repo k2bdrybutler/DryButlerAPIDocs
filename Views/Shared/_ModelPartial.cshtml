@@ -1,4 +1,4 @@
-﻿@model DryButlerAPIDocs.Models.Model
+﻿@model DryButlerAPIDocs.Models.DBAPIModel
 
 <div class="requestdiv">
     <table class="table">
@@ -26,13 +26,13 @@
         {
             <tr class="requestcolomncolor">
                 <td>
-                    @Html.DisplayFor(modelItem => item.Parameter.ParameterName)
+                    @Html.DisplayFor(modelItem => item.ParameterName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => K2Facade.EnumComboClass.SelectByID(K2Facade.ProjectEnums.PropertyTypes, item.Parameter.ParameterType, 0).DESC)
+                    @Html.DisplayFor(modelItem => K2Facade.EnumComboClass.SelectByID(K2Facade.ProjectEnums.PropertyTypes, item.ParameterType, 0).DESC)
                 </td>
                 <td>
-                    @if (item.ObjectModelID.HasValue)
+                    @if (!string.IsNullOrEmpty(item.ObjectModelID))
                     {
                         @Html.ActionLink(item.ObjectModelName, "Details", "Model", new { id = item.ObjectModelID }, null)
                     }
@@ -42,10 +42,10 @@
                     }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Parameter.ValueRange)
+                    @Html.DisplayFor(modelItem => item.ValueRange)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Parameter.SampleValue)
+                    @Html.DisplayFor(modelItem => item.SampleValue)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Required)
