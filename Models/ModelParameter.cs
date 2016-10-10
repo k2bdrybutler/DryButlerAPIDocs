@@ -16,6 +16,7 @@ namespace DryButlerAPIDocs.Models
         public string SampleValue { get; set; }
         public string ObjectModelID { get; set; }
         public bool Nullable { get; set; }
+        public string Description { get; set; }
 
         public virtual bool Required { get { return Nullable == false; } }
 

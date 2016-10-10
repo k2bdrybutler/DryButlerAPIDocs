@@ -3,32 +3,27 @@
 <div class="responsediv">
     <table class="table">
         <tr class="responsemodeltext">
-            <th>Response Model</th>
-            <th> </th>
-            <th> </th>
-            <th> </th>
+            <th colspan="5">Response Model</th>
         </tr>
         <tr class="responseepartial">
-            <th>@Model.ModelName</th>
-            <th> </th>
-            <th> </th>
-            <th> </th>
+            <th colspan="5">@Model.ModelName</th>
         </tr>
         <tr class="responseepartial">
-            <th colspan="2">
+            <th>
                 Parameter Name
             </th>
             <th>
                 Parameter Type
             </th>
             <th>Model</th>
-            @*<th>Nullable</th>*@
+            <th>Description</th>
+            <th>Nullable</th>
         </tr>
 
         @foreach (var item in Model.ModelParameters)
         {
             <tr class="responsecolomncolor">
-                <td colspan="2">
+                <td>
                     @Html.DisplayFor(modelItem => item.ParameterName)
                 </td>
                 <td>
@@ -44,9 +39,12 @@
                         <span>{ NULL }</span>
                     }
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Nullable)
-                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nullable)
+                </td>
             </tr>
         }
 

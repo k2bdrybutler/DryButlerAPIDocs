@@ -225,3 +225,4 @@ C:\Projects\DryButlerAPIDocs\bin\System.Web.WebPages.Razor.xml
 C:\Projects\DryButlerAPIDocs\bin\System.Web.Optimization.xml
 C:\Projects\DryButlerAPIDocs\obj\Debug\DryButlerAPIDocs.dll
 C:\Projects\DryButlerAPIDocs\obj\Debug\DryButlerAPIDocs.pdb
+C:\Projects\DryButlerAPIDocs\obj\Debug\DryButlerAPIDocs.csprojResolveAssemblyReference.cache

@@ -4,19 +4,16 @@
     <table class="table">
 
         <tr class="requestmodeltext">
-            <th colspan="6">Request Model</th>
+            <th colspan="7">Request Model</th>
         </tr>
         <tr class="requestpartial">
-            <th colspan="6">@Model.ModelName</th>
+            <th colspan="7">@Model.ModelName</th>
         </tr>
         <tr class="requestpartial">
-            <th>
-                Parameter Name
-            </th>
-            <th>
-                Parameter Type
-            </th>
+            <th>Parameter Name</th>
+            <th>Parameter Type</th>
             <th>Model</th>
+            <th>Description</th>
             <th>Value Range/Description</th>
             <th>Sample Value</th>
             <th>Required</th>
@@ -40,6 +37,9 @@
                     {
                         <span>{ NULL }</span>
                     }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ValueRange)
