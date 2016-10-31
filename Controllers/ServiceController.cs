@@ -19,7 +19,22 @@ namespace DryButlerAPIDocs.Controllers
             if (data == null || data.Count == 0) return View();
             if (!string.IsNullOrEmpty(searchString)) data = data.Where(x => x.MethodCode.ToString() == searchString
             || x.MethodName.ToLower().Contains(searchString.ToLower())).ToList();
-            return View(data.ToPagedList(page ?? 1, GeneralItems.PageRowCount));
+            var returnModel = new ServiceDetailModel()
+            {
+                ServiceID = dataModel.ID,
+                ServiceName = dataModel.Name,
+                ServiceTitle = dataModel.ID.ToString() + " - " + dataModel.Name,
+                Methods = data.ToPagedList(page ?? 1, GeneralItems.PageRowCount)
+            };
+            return View(returnModel);
         }
+    }
+
+    public class ServiceDetailModel
+    {
+        public int ServiceID { get; set; }
+        public string ServiceName { get; set; }
+        public string ServiceTitle { get; set; }
+        public IPagedList<Models.DBMethod> Methods { get; set; }
     }
 }

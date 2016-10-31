@@ -1,6 +1,5 @@
 ﻿@using PagedList.Mvc;
-@model PagedList.IPagedList<DryButlerAPIDocs.Models.DBMethod>
-
+@model DryButlerAPIDocs.Controllers.ServiceDetailModel
 
 
 @{
@@ -8,7 +7,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div style="padding-top:15px;">
-    <h4>Model Details</h4>
+    <h2>@Model.ServiceTitle</h2>
 </div>
 
 
@@ -58,9 +57,9 @@
             <th></th>
         </tr>
 
-        @if (Model != null && Model.Count > 0)
+        @if (Model != null && Model.Methods != null && Model.Methods.Count > 0)
         {
-            foreach (var item in Model)
+            foreach (var item in Model.Methods)
             {
                 <tr onclick="location.href = '@(Url.Action("Index", "Method", new { id = item.ID }))'" class="servicecolomn">
                     <td style="vertical-align:inherit; width:20%;">
@@ -78,9 +77,9 @@
     </table>
 
 </div>
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+Page @(Model.Methods.PageCount < Model.Methods.PageNumber ? 0 : Model.Methods.PageNumber) of @Model.Methods.PageCount
 
-@Html.PagedListPager(Model, page => Url.Action("Index",
+@Html.PagedListPager(Model.Methods, page => Url.Action("Index",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 
 

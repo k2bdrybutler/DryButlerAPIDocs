@@ -12,11 +12,11 @@
         <tr class="requestpartial">
             <th>Parameter Name</th>
             <th>Parameter Type</th>
+            <th>Required</th>
             <th>Model</th>
             <th>Description</th>
             <th>Value Range/Description</th>
             <th>Sample Value</th>
-            <th>Required</th>
         </tr>
 
         @foreach (var item in Model.ModelParameters)
@@ -29,13 +29,16 @@
                     @Html.DisplayFor(modelItem => item.ParameterTypeDesc)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Required)
+                </td>
+                <td>
                     @if (!string.IsNullOrEmpty(item.ObjectModelID))
                     {
                         @Html.ActionLink(item.ObjectModelName, "Details", "Model", new { id = item.ObjectModelID }, null)
                     }
                     else
                     {
-                        <span>{ NULL }</span>
+                        <span>-</span>
                     }
                 </td>
                 <td>
@@ -46,9 +49,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.SampleValue)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Required)
                 </td>
             </tr>
         }
