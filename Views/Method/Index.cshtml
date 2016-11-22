@@ -62,7 +62,7 @@
                         <th>
                             Control
                         </th>
-                        <th>Display Type</th>
+                        @*<th>Display Type</th>*@
                     </tr>
 
                     @foreach (var item in Model.Responses.OrderBy(x => x.Level))
@@ -83,9 +83,9 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Control)
                             </td>
-                            <td>
+                            @*<td>
                                 @Html.DisplayFor(modelItem => K2Facade.EnumComboClass.SelectByID(K2Facade.ProjectEnums.DisplayTypes, item.DisplayType, 0).DESC)
-                            </td>
+                            </td>*@
                         </tr>
                     }
 

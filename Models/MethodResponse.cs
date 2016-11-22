@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace DryButlerAPIDocs.Models
+﻿namespace DryButlerAPIDocs.Models
 {
     public partial class DBMethodResponse : K2Facade.EntityBase
     {
@@ -24,6 +19,8 @@ namespace DryButlerAPIDocs.Models
             }
         }
         public int? ResponseType { get; set; }
-        public int DisplayType { get; set; }
+        public int DisplayTypeAnd { get; set; }
+        public int DisplayTypeIOS { get; set; }
+        public int DisplayTypeWeb { get; set; }
     }
 }
