@@ -257,11 +257,14 @@ namespace K2Facade
                         ID = 0,
                         CompanyName = "DryButler",
                         UseSSPI = false,
-                        Server = "10.10.10.7",
-                        //Server = ".",
+                        //Server = "10.10.10.7",
+                        Server = "195.142.109.42",
+                        //Server = "81.213.110.51",
+                        //Server = @".\SQL2014",
                         Database = "DryButler",
                         UserID = "sa",
-                        Password = "123456"
+                        //Password = "123456",
+                        Password = "1029*!Temiz"
                     };
                 }
                 else
